@@ -1,89 +1,87 @@
+import Button, {
+  Props as ButtonProps,
+} from "$store/components/ui/CustomizedButton.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
-import Header from "$store/components/ui/SectionHeader.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
+export interface UserProps {
+  avatar?: ImageWidget;
+  width?: number;
+  height?: number;
+  /** @format html */
+  name?: string;
+  position?: string;
+  company?: string;
+}
+
 export interface Testimonial {
+  /** @format html */
   text?: string;
   image?: {
     src?: ImageWidget;
     alt?: string;
   };
-  user?: {
-    avatar?: ImageWidget;
-    name?: string;
-    position?: string;
-    company?: string;
-  };
+  user?: UserProps;
+  position?: "flex-row" | "flex-row-reverse" | "flex-col" | "flex-col-reverse";
+  isCard?: boolean;
+  /** @format color */
+  backgroundColor?: string;
 }
 
 export interface Props {
+  /** @format html */
   title?: string;
+  /** @format html */
   description?: string;
   testimonials?: Testimonial[];
   layout?: {
     variation?: "Grid" | "Slider";
     headerAlignment?: "center" | "left";
+    position?: "flex-col" | "flex-row";
+    desktopPosition?: "lg:flex-col" | "lg:flex-row";
   };
+  button?: ButtonProps;
+  /** @format color */
+  backgroundColor?: string;
 }
 
-const DEFAULT_PROPS: Props = {
-  "title": "",
-  "description": "",
-  "testimonials": [{
-    "text":
-      "Fashion Store is my go-to online destination for all things stylish. Their vast collection of trendy clothes and accessories never disappoints. The quality is exceptional, and the prices are affordable. The website is easy to navigate, and their customer service team is friendly and responsive. I always feel like a fashionista when I shop here!",
-    "image": {
-      "src":
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/e0fcbcae-0a21-4269-9605-7ef8708e58ad",
-      "alt": "Testimonal",
-    },
-    "user": {
-      "avatar": "https://avatars.githubusercontent.com/u/117045675?s=200&v=4",
-      "name": "Robert Johnson",
-      "position": "Founder",
-      "company": "RJ Agency",
-    },
-  }, {
-    "text":
-      "I can't praise Fashion Store enough! Their commitment to staying ahead of the fashion curve is evident in their diverse and up-to-date inventory. Whether I need a casual outfit or a glamorous dress, they have it all. The shopping experience is seamless, and my orders always arrive promptly. Fashion Store is a true fashion lover's paradise!",
-    "image": {
-      "src":
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/e0fcbcae-0a21-4269-9605-7ef8708e58ad",
-      "alt": "Testimonal",
-    },
-    "user": {
-      "avatar": "https://avatars.githubusercontent.com/u/117045675?s=200&v=4",
-      "name": "Mary Bush",
-      "position": "Director",
-      "company": "MB & Co",
-    },
-  }, {
-    "text":
-      "Fashion Store has transformed my wardrobe. Their curated collection of clothing and accessories has helped me discover my personal style. The quality of their products is outstanding, and the prices are unbeatable. The website is visually appealing and easy to navigate. Fashion Store is my trusted companion for staying fashionable and feeling confident!",
-    "image": {
-      "src":
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/e0fcbcae-0a21-4269-9605-7ef8708e58ad",
-      "alt": "Testimonal",
-    },
-    "user": {
-      "avatar": "https://avatars.githubusercontent.com/u/117045675?s=200&v=4",
-      "name": "Sandra Bullock",
-      "position": "Founder",
-      "company": "Sanlock",
-    },
-  }],
-  "layout": {
-    "variation": "Grid",
-    "headerAlignment": "center",
-  },
-};
+function Header({
+  title,
+  description,
+  alignment,
+  position,
+  desktopPosition,
+}: Pick<Props, "title" | "description"> & {
+  alignment: "center" | "left";
+  position?: "flex-col" | "flex-row";
+  desktopPosition?: "lg:flex-col" | "lg:flex-row";
+}) {
+  return (
+    <div
+      class={`${
+        alignment === "center" && "text-center items-center justify-center"
+      } flex ${position} ${desktopPosition} justify-between w-full gap-2.5`}
+    >
+      {title && <div dangerouslySetInnerHTML={{ __html: title }} />}
+      {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
+    </div>
+  );
+}
 
-const Testimonal = ({ image, text, user }: Testimonial) => (
-  <div class="flex flex-col items-center gap-9 text-center">
+const Testimonal = (
+  { image, text, user, position = "flex-col", isCard = false, backgroundColor }:
+    Testimonial,
+) => (
+  <div
+    style={{ backgroundColor: backgroundColor }}
+    class={`flex items-center gap-9 text-center ${position} ${
+      isCard && "py-8 px-3 rounded-md !gap-4"
+    }`}
+  >
     {image?.src && (
       <Image
         src={image.src}
@@ -92,25 +90,29 @@ const Testimonal = ({ image, text, user }: Testimonial) => (
         height={100}
       />
     )}
-    <h3 class="text-xl lg:text-2xl">
-      {text}
-    </h3>
+    {text && (
+      <div
+        class="text-xl lg:text-2xl"
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
+    )}
     <div class="flex flex-col items-center gap-4">
       {user?.avatar && (
         <Image
           src={user.avatar}
           alt={user?.name}
-          width={60}
-          height={60}
+          width={user?.width || 120}
+          height={user?.height || 120}
           class="rounded-full"
         />
       )}
       <div class="flex flex-col">
         {user?.name &&
           (
-            <p class="text-lg">
-              {user?.name}
-            </p>
+            <div
+              class="text-lg"
+              dangerouslySetInnerHTML={{ __html: user?.name || "" }}
+            />
           )}
         {(user?.position || user?.company) &&
           (
@@ -123,61 +125,73 @@ const Testimonal = ({ image, text, user }: Testimonial) => (
   </div>
 );
 
-export default function Testimonials(
-  props: Props,
-) {
+export default function Testimonials({
+  title,
+  description,
+  testimonials = [],
+  layout,
+  backgroundColor,
+  button,
+}: Props) {
   const id = useId();
-  const { title, description, testimonials, layout } = {
-    ...DEFAULT_PROPS,
-    ...props,
-  };
 
   return (
-    <div class="w-full container px-4 py-8 flex flex-col gap-14 lg:gap-20 lg:py-10 lg:px-0">
-      <Header
-        title={title}
-        description={description}
-        alignment={layout?.headerAlignment || "center"}
-      />
+    <div
+      style={{ backgroundColor: backgroundColor }}
+      class="flex items-center justify-center w-full h-full"
+    >
+      <div class="w-full container px-4 py-8 flex flex-col items-center justify-center gap-14 lg:gap-20 lg:py-10 lg:px-0">
+        <Header
+          title={title}
+          description={description}
+          alignment={layout?.headerAlignment || "center"}
+          position={layout?.position || "flex-col"}
+          desktopPosition={layout?.desktopPosition || "lg:flex-row"}
+        />
 
-      {layout?.variation === "Grid" && (
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {testimonials?.map(({ image, text, user }) => (
-            <Testimonal image={image} text={text} user={user} />
-          ))}
-        </div>
-      )}
-
-      {layout?.variation !== "Grid" && (
-        <div
-          class="relative w-full px-8"
-          id={id}
-        >
-          <Slider class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 w-full">
-            {testimonials?.map(({ image, text, user }, index) => (
-              <Slider.Item
-                index={index}
-                class="flex flex-col gap-4 carousel-item w-full"
-              >
-                <Testimonal image={image} text={text} user={user} />
-              </Slider.Item>
+        {layout?.variation === "Grid" && (
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {testimonials?.map((testimonial) => (
+              <Testimonal {...testimonial} />
             ))}
-          </Slider>
-          <>
-            <div class="z-10 absolute -left-2 lg:-left-8 top-1/2">
-              <Slider.PrevButton class="btn btn-circle btn-outline">
-                <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-              </Slider.PrevButton>
-            </div>
-            <div class="z-10 absolute -right-2 lg:-right-8 top-1/2">
-              <Slider.NextButton class="btn btn-circle btn-outline">
-                <Icon size={24} id="ChevronRight" strokeWidth={3} />
-              </Slider.NextButton>
-            </div>
-          </>
-          <SliderJS rootId={id} />
+          </div>
+        )}
+
+        {layout?.variation !== "Grid" && (
+          <div
+            class="relative w-full px-8"
+            id={id}
+          >
+            <Slider class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 w-full">
+              {testimonials?.map((testimonial, index) => (
+                <Slider.Item
+                  index={index}
+                  class="flex flex-col gap-4 carousel-item w-full"
+                >
+                  <Testimonal {...testimonial} />
+                </Slider.Item>
+              ))}
+            </Slider>
+            <>
+              <div class="z-10 absolute -left-2 lg:-left-8 top-1/2">
+                <Slider.PrevButton class="btn btn-circle btn-outline">
+                  <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+                </Slider.PrevButton>
+              </div>
+              <div class="z-10 absolute -right-2 lg:-right-8 top-1/2">
+                <Slider.NextButton class="btn btn-circle btn-outline">
+                  <Icon size={24} id="ChevronRight" strokeWidth={3} />
+                </Slider.NextButton>
+              </div>
+            </>
+            <SliderJS rootId={id} />
+          </div>
+        )}
+
+        <div>
+          {button && <Button {...button} />}
         </div>
-      )}
+      </div>
     </div>
   );
 }

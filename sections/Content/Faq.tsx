@@ -1,9 +1,13 @@
-import Header from "$store/components/ui/SectionHeader.tsx";
-
 export interface Question {
+  /** @format html */
   question: string;
   /** @format html */
   answer: string;
+  /** @format color */
+  questionBackgroundColor?: string;
+  /** @format color */
+  answerBackgroundColor?: string;
+  colorReverse?: boolean;
 }
 
 export interface Contact {
@@ -17,7 +21,9 @@ export interface Contact {
 }
 
 export interface Props {
+  /** @format html */
   title?: string;
+  /** @format html */
   description?: string;
   questions?: Question[];
   contact?: Contact;
@@ -52,14 +58,46 @@ const DEFAULT_PROPS = {
   },
 };
 
-function Question({ question, answer }: Question) {
+function Header(
+  { title, description, alignment }: Pick<Props, "title" | "description"> & {
+    alignment: "center" | "left";
+  },
+) {
   return (
-    <details class="collapse collapse-arrow join-item border-t border-base-200">
-      <summary class="collapse-title text-lg font-medium">
-        {question}
+    <div
+      class={`${
+        alignment === "center" && "text-center items-center justify-center"
+      } flex flex-col gap-2.5`}
+    >
+      {title && <div dangerouslySetInnerHTML={{ __html: title }} />}
+      {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
+    </div>
+  );
+}
+
+function Question(
+  {
+    question,
+    answer,
+    questionBackgroundColor,
+    answerBackgroundColor,
+    colorReverse = false,
+  }: Question,
+) {
+  return (
+    <details
+      style={{ backgroundColor: questionBackgroundColor }}
+      class={`collapse collapse-arrow join-item rounded-3xl ${
+        colorReverse && "text-white"
+      }`}
+    >
+      <summary class="collapse-title text-lg font-medium rounded-3xl">
+        <div dangerouslySetInnerHTML={{ __html: question || "" }} />
       </summary>
+
       <div
-        class="collapse-content"
+        style={{ backgroundColor: answerBackgroundColor }}
+        class="collapse-content pt-2.5"
         dangerouslySetInnerHTML={{ __html: answer }}
       />
     </details>
