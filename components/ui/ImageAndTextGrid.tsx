@@ -49,6 +49,7 @@ export interface Banner {
     | "flex-row-reverse";
   desktopAlignment?: "items-start" | "items-center" | "items-end";
   titleAppearsFirst?: boolean;
+  hasBorderClass?: boolean;
 }
 
 export interface Props {
@@ -59,6 +60,7 @@ export interface Props {
     /** @default 4 */
     desktop: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   };
+  hasContainerClass?: boolean;
 }
 
 const MOBILE_COLUMNS = {
@@ -101,15 +103,16 @@ function ImageAndText({
   desktopPosition = "flex-row",
   desktopAlignment = "items-start",
   titleAppearsFirst = false,
+  hasBorderClass = false,
 }: Banner) {
   return (
     <div
       style={{ backgroundColor: backgroundColor }}
       class={`${mobilePosition} ${mobileAlignment} ${
         DESKTOP_POSITION[desktopPosition]
-      } ${
-        DESKTOP_ALIGNMENT[desktopAlignment]
-      } flex justify-between w-full h-full items-center gap-3 rounded-lg py-4 px-6`}
+      } ${DESKTOP_ALIGNMENT[desktopAlignment]} ${
+        hasBorderClass && "rounded-lg"
+      } flex justify-between w-full h-full items-center gap-3 py-4 px-6`}
     >
       {titleAppearsFirst && (
         <div class="flex flex-col gap-2.5 w-full">
@@ -158,14 +161,16 @@ function ImageAndText({
   );
 }
 
-export default function ImageAndTextGrid({ banners, itemsPerLine }: Props) {
+export default function ImageAndTextGrid(
+  { banners, itemsPerLine, hasContainerClass }: Props,
+) {
   const { mobile, desktop } = itemsPerLine;
 
   return (
     <div
-      class={`${MOBILE_COLUMNS[mobile]} ${
-        DESKTOP_COLUMNS[desktop]
-      } grid w-full container gap-6 py-4`}
+      class={`${MOBILE_COLUMNS[mobile]} ${DESKTOP_COLUMNS[desktop]} ${
+        hasContainerClass && "container"
+      } grid w-full gap-6 py-4`}
     >
       {banners?.map((banner) => <ImageAndText {...banner} />)}
     </div>
