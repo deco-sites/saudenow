@@ -1,25 +1,8 @@
+import Button, {
+  Props as ButtonProps,
+} from "$store/components/ui/CustomizedButton.tsx";
 import { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-
-export interface ButtonProps {
-  text?: string;
-  link?: string;
-  /**
-   * @format color
-   */
-  backgroundColor?: string;
-  /**
-   * @title Tamanho em porcentagem. Ex.: 100%
-   * @default "100%"
-   */
-  width?: string;
-  /**
-   * @format color
-   */
-  textColor?: string;
-  target: "_blank" | "_self";
-  isDisabled?: boolean;
-}
 
 export interface Banner {
   bannerImage: {
@@ -134,30 +117,23 @@ function ImageAndText({
         loading={bannerImage.preload ? "eager" : "lazy"}
       />
 
-      <div class="flex flex-col gap-2.5 w-full">
+      <div
+        class={`flex flex-col ${mobileAlignment} ${
+          DESKTOP_ALIGNMENT[desktopAlignment]
+        } gap-2.5 w-full`}
+      >
         {!titleAppearsFirst && (
-          <>
+          <div class="flex flex-col gap-2.5 w-full">
             <div dangerouslySetInnerHTML={{ __html: title || "" }} />
             {description && (
               <div dangerouslySetInnerHTML={{ __html: description }} />
             )}
-          </>
+          </div>
         )}
-        {button && !button.isDisabled && (
-          <a
-            href={button.link}
-            target={button.target || "_self"}
-            style={{
-              color: button.textColor,
-              backgroundColor: button.backgroundColor,
-              width: button.width,
-            }}
-            class={`${desktopAlignment === "items-center" && "mx-auto"} ${
-              mobileAlignment === "items-center" && "mx-auto"
-            } flex items-center justify-center rounded-lg p-2`}
-          >
-            {button.text}
-          </a>
+        {button && (
+          <>
+            <Button {...button} />
+          </>
         )}
       </div>
     </div>
@@ -173,7 +149,7 @@ export default function ImageAndTextGrid(
     <div
       class={`${MOBILE_COLUMNS[mobile]} ${DESKTOP_COLUMNS[desktop]} ${
         hasContainerClass && "container"
-      } ${hasSpacement && "gap-6"} grid w-full py-4`}
+      } ${hasSpacement && "gap-6 py-4"} grid w-full`}
     >
       {banners?.map((banner) => <ImageAndText {...banner} />)}
     </div>

@@ -12,7 +12,7 @@ export interface Props {
 }
 
 export default function CustomizedButton(
-  { text, link, target = "_blank", type = "purple-to-blue" }: Props,
+  { text, link, target, type }: Props,
 ) {
   const anchorTypeToClass: Record<string, string> = {
     "purple-to-blue":
@@ -31,7 +31,7 @@ export default function CustomizedButton(
     return (
       <a
         href={link || "#"}
-        target={target}
+        target={target || "_blank"}
         class="text-white font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 bg-gradient-to-r from-primary-linear-gradient to-secondary-linear-gradient lg:text-xl"
       >
         {text}
@@ -42,9 +42,9 @@ export default function CustomizedButton(
   return (
     <a
       href={link || "#"}
-      target={target}
+      target={target || "_blank"}
       class={`${
-        anchorTypeToClass[type]
+        anchorTypeToClass[type ?? "purple-to-blue"]
       } relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br`}
     >
       <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">

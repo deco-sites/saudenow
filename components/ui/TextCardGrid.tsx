@@ -68,7 +68,7 @@ export default function TextCardGrid({
       <div
         class={`${
           hasContainerClass && "container"
-        } flex flex-col items-center justify-center gap-4`}
+        } flex flex-col items-center justify-center gap-4 md:gap-10`}
       >
         {title && <div dangerouslySetInnerHTML={{ __html: title }} />}
 
