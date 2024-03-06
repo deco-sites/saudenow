@@ -7,7 +7,8 @@ export interface Props {
     | "cyan-to-blue"
     | "green-to-blue"
     | "purple-to-pink"
-    | "red-to-yellow";
+    | "red-to-yellow"
+    | "linear-gradient";
 }
 
 export default function CustomizedButton(
@@ -25,6 +26,18 @@ export default function CustomizedButton(
     "red-to-yellow":
       "from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 focus:ring-4 focus:outline-none focus:ring-red-100",
   };
+
+  if (type === "linear-gradient") {
+    return (
+      <a
+        href={link || "#"}
+        target={target}
+        class="text-white font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 bg-gradient-to-r from-primary-linear-gradient to-secondary-linear-gradient lg:text-xl"
+      >
+        {text}
+      </a>
+    );
+  }
 
   return (
     <a

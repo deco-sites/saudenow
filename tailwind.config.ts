@@ -16,6 +16,10 @@ export default {
           "100%": { transform: "translateX(-50%)" },
         },
       },
+      colors: {
+        "primary-linear-gradient": "rgba(0, 183, 201, 1)",
+        "secondary-linear-gradient": "rgba(0, 248, 194, 1)",
+      },
     },
   },
 };

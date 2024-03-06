@@ -63,7 +63,7 @@ export default function TextCardGrid({
   return (
     <div
       style={{ backgroundColor: backgroundColor }}
-      class="flex items-center justify-center w-full h-full px-2 lg:px-0"
+      class="flex items-center justify-center w-full h-full px-2 lg:px-0 py-3"
     >
       <div
         class={`${
