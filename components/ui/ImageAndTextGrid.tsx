@@ -33,6 +33,7 @@ export interface Banner {
   desktopAlignment?: "items-start" | "items-center" | "items-end";
   titleAppearsFirst?: boolean;
   hasBorderClass?: boolean;
+  hasContainerClass?: boolean;
 }
 
 export interface Props {
@@ -88,6 +89,7 @@ function ImageAndText({
   desktopAlignment = "items-start",
   titleAppearsFirst = false,
   hasBorderClass = false,
+  hasContainerClass = false,
 }: Banner) {
   return (
     <div
@@ -96,6 +98,8 @@ function ImageAndText({
         DESKTOP_POSITION[desktopPosition]
       } ${DESKTOP_ALIGNMENT[desktopAlignment]} ${
         hasBorderClass && "rounded-lg"
+      } ${
+        hasContainerClass && "container"
       } flex justify-between w-full h-full items-center gap-3 py-4 px-6`}
     >
       {titleAppearsFirst && (
