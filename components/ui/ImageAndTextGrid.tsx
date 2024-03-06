@@ -61,6 +61,7 @@ export interface Props {
     desktop: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   };
   hasContainerClass?: boolean;
+  hasSpacement?: boolean;
 }
 
 const MOBILE_COLUMNS = {
@@ -151,7 +152,9 @@ function ImageAndText({
               backgroundColor: button.backgroundColor,
               width: button.width,
             }}
-            class="flex items-center justify-center rounded-lg p-2"
+            class={`${desktopAlignment === "items-center" && "mx-auto"} ${
+              mobileAlignment === "items-center" && "mx-auto"
+            } flex items-center justify-center rounded-lg p-2`}
           >
             {button.text}
           </a>
@@ -162,7 +165,7 @@ function ImageAndText({
 }
 
 export default function ImageAndTextGrid(
-  { banners, itemsPerLine, hasContainerClass }: Props,
+  { banners, itemsPerLine, hasContainerClass, hasSpacement }: Props,
 ) {
   const { mobile, desktop } = itemsPerLine;
 
@@ -170,7 +173,7 @@ export default function ImageAndTextGrid(
     <div
       class={`${MOBILE_COLUMNS[mobile]} ${DESKTOP_COLUMNS[desktop]} ${
         hasContainerClass && "container"
-      } grid w-full gap-6 py-4`}
+      } ${hasSpacement && "gap-6"} grid w-full py-4`}
     >
       {banners?.map((banner) => <ImageAndText {...banner} />)}
     </div>
