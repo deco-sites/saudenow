@@ -1,3 +1,6 @@
+import Button, {
+  Props as ButtonProps,
+} from "$store/components/ui/CustomizedButton.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import Image from "apps/website/components/Image.tsx";
 import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
@@ -49,17 +52,7 @@ export interface BannerProps {
   description?: HTMLWidget;
   duration?: string;
   logos?: Logo[];
-  buttonTitle?: string;
-  /** @format color */
-  buttonBgColor?: string;
-  /** @format color */
-  buttonTextColor?: string;
-  buttonLink?: string;
-  /**
-   * @title Tamanho em porcentagem. Ex.: 100%
-   * @default "100%"
-   */
-  buttonWidth?: string;
+  button?: ButtonProps;
 }
 
 export default function Banner(
@@ -77,13 +70,9 @@ export default function Banner(
     targetBlankActive,
     logos = [],
     lcp = false,
-    buttonTitle,
     backgroundColor,
-    buttonBgColor = "#000",
-    buttonTextColor = "#fff",
     textColor = "#000",
-    buttonLink,
-    buttonWidth,
+    button,
   }: BannerProps,
 ) {
   return (
@@ -148,18 +137,10 @@ export default function Banner(
           </span>
         )}
 
-        {buttonTitle && (
-          <a
-            style={{
-              color: buttonTextColor,
-              background: buttonBgColor,
-              width: buttonWidth,
-            }}
-            href={buttonLink}
-            class="flex items-center justify-center btn hover:opacity-90 border-none w-full rounded-xl mt-12"
-          >
-            <span class="text-xs font-bold">{buttonTitle}</span>
-          </a>
+        {button && (
+          <div class="mt-4">
+            <Button {...button} />
+          </div>
         )}
 
         {logos && (
