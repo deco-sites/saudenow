@@ -52,6 +52,7 @@ export interface BannerProps {
   description?: HTMLWidget;
   duration?: string;
   logos?: Logo[];
+  logoPosition?: "after-title" | "before-title";
   button?: ButtonProps;
 }
 
@@ -69,6 +70,7 @@ export default function Banner(
     link,
     targetBlankActive,
     logos = [],
+    logoPosition,
     lcp = false,
     backgroundColor,
     textColor = "#000",
@@ -114,6 +116,20 @@ export default function Banner(
           alignment === "center" ? "items-center md:items-start" : "items-start"
         } card-body px-16 w-full md:max-w-2xl`}
       >
+        {logos && logoPosition === "before-title" && (
+          <div class="card-actions justify-start grid md:grid-cols-2 pt-12 gap-x-16 gap-y-8 pb-12">
+            {logos?.map((logo) => (
+              <Image
+                class="object-center"
+                src={logo?.image}
+                alt={logo?.alt}
+                width={180}
+                height={60}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        )}
         {subtitle && (
           <span class="text-highlight-blue font-bold text-normal pt-3">
             {subtitle}
@@ -143,7 +159,7 @@ export default function Banner(
           </div>
         )}
 
-        {logos && (
+        {logos && logoPosition === "after-title" && (
           <div class="card-actions justify-start grid md:grid-cols-2 pt-12 gap-x-16 gap-y-8 pb-12">
             {logos?.map((logo) => (
               <Image
