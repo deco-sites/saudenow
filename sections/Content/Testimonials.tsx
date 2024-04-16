@@ -47,6 +47,14 @@ export interface Props {
   button?: ButtonProps;
   /** @format color */
   backgroundColor?: string;
+  maxWidth?:
+    | "max-w-[50%]"
+    | "max-w-[60%]"
+    | "max-w-[70%]"
+    | "max-w-[80%]"
+    | "max-w-[90%]"
+    | "max-w-[95%]"
+    | "max-w-full";
 }
 
 function Header({
@@ -132,6 +140,7 @@ export default function Testimonials({
   layout,
   backgroundColor,
   button,
+  maxWidth,
 }: Props) {
   const id = useId();
 
@@ -140,7 +149,9 @@ export default function Testimonials({
       style={{ backgroundColor: backgroundColor }}
       class="flex items-center justify-center w-full h-full"
     >
-      <div class="w-full container px-4 py-8 flex flex-col items-center justify-center gap-14 lg:gap-20 lg:py-10 lg:px-0">
+      <div
+        class={`${maxWidth} w-full container px-4 py-8 flex flex-col items-center justify-center gap-14 lg:gap-20 lg:py-10 lg:px-0`}
+      >
         <Header
           title={title}
           description={description}

@@ -34,6 +34,14 @@ export interface Banner {
   titleAppearsFirst?: boolean;
   hasBorderClass?: boolean;
   hasContainerClass?: boolean;
+  maxWidth?:
+    | "max-w-[50%]"
+    | "max-w-[60%]"
+    | "max-w-[70%]"
+    | "max-w-[80%]"
+    | "max-w-[90%]"
+    | "max-w-[95%]"
+    | "max-w-full";
 }
 
 export interface Props {
@@ -90,55 +98,60 @@ function ImageAndText({
   titleAppearsFirst = false,
   hasBorderClass = false,
   hasContainerClass = false,
+  maxWidth = "max-w-full",
 }: Banner) {
   return (
     <div
       style={{ backgroundColor: backgroundColor }}
-      class={`${mobilePosition} ${mobileAlignment} ${
-        DESKTOP_POSITION[desktopPosition]
-      } ${DESKTOP_ALIGNMENT[desktopAlignment]} ${
-        hasBorderClass && "rounded-lg"
-      } ${
-        hasContainerClass && "container"
-      } flex justify-between w-full h-full items-center gap-3 py-4 px-6`}
+      class="flex justify-center w-full h-full items-center py-4 px-6"
     >
-      {titleAppearsFirst && (
-        <div class="flex flex-col gap-2.5 w-full">
-          <div dangerouslySetInnerHTML={{ __html: title || "" }} />
-
-          {description && (
-            <div dangerouslySetInnerHTML={{ __html: description }} />
-          )}
-        </div>
-      )}
-
-      <Image
-        src={bannerImage.image}
-        alt={bannerImage.description}
-        width={bannerImage.width || 350}
-        height={bannerImage.height || 350}
-        preload={bannerImage.preload || false}
-        loading={bannerImage.preload ? "eager" : "lazy"}
-      />
-
       <div
-        class={`flex flex-col ${mobileAlignment} ${
-          DESKTOP_ALIGNMENT[desktopAlignment]
-        } gap-2.5 w-full`}
+        class={`${
+          hasContainerClass && "container"
+        } flex justify-between w-full h-full items-center gap-3 ${maxWidth} ${mobilePosition} ${mobileAlignment} ${
+          DESKTOP_POSITION[desktopPosition]
+        } ${DESKTOP_ALIGNMENT[desktopAlignment]} ${
+          hasBorderClass && "rounded-lg"
+        }`}
       >
-        {!titleAppearsFirst && (
+        {titleAppearsFirst && (
           <div class="flex flex-col gap-2.5 w-full">
             <div dangerouslySetInnerHTML={{ __html: title || "" }} />
+
             {description && (
               <div dangerouslySetInnerHTML={{ __html: description }} />
             )}
           </div>
         )}
-        {button && (
-          <>
-            <Button {...button} />
-          </>
-        )}
+
+        <Image
+          src={bannerImage.image}
+          alt={bannerImage.description}
+          width={bannerImage.width || 350}
+          height={bannerImage.height || 350}
+          preload={bannerImage.preload || false}
+          loading={bannerImage.preload ? "eager" : "lazy"}
+        />
+
+        <div
+          class={`flex flex-col ${mobileAlignment} ${
+            DESKTOP_ALIGNMENT[desktopAlignment]
+          } gap-2.5 w-full`}
+        >
+          {!titleAppearsFirst && (
+            <div class="flex flex-col gap-2.5 w-full">
+              <div dangerouslySetInnerHTML={{ __html: title || "" }} />
+              {description && (
+                <div dangerouslySetInnerHTML={{ __html: description }} />
+              )}
+            </div>
+          )}
+          {button && (
+            <>
+              <Button {...button} />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
