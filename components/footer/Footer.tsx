@@ -8,9 +8,8 @@ import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
-import { clx } from "$store/sdk/clx.ts";
-import type { ImageWidget } from "apps/admin/widgets.ts";
-import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
+import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
+// import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
 
 export type Item = {
   label: string;
@@ -29,6 +28,7 @@ export interface SocialItem {
     | "Instagram"
     | "Linkedin"
     | "Tiktok"
+    | "Youtube"
     | "Twitter";
   link: string;
 }
@@ -57,12 +57,10 @@ export interface NewsletterForm {
 }
 
 export interface Layout {
-  backgroundColor?:
-    | "Primary"
-    | "Secondary"
-    | "Accent"
-    | "Base 100"
-    | "Base 100 inverted";
+  /** @format color-input */
+  backgroundColor?: string;
+  /** @format color-input */
+  textColor?: string;
   variation?:
     | "Variation 1"
     | "Variation 2"
@@ -85,7 +83,9 @@ export interface Layout {
 export interface Props {
   logo?: {
     image: ImageWidget;
-    description?: string;
+    description?: HTMLWidget;
+    width?: number;
+    height?: number;
   };
   newsletter?: {
     title?: string;
@@ -110,14 +110,6 @@ export interface Props {
   };
   layout?: Layout;
 }
-
-const LAYOUT = {
-  "Primary": "bg-primary text-primary-content",
-  "Secondary": "bg-secondary text-secondary-content",
-  "Accent": "bg-accent text-accent-content",
-  "Base 100": "bg-base-100 text-base-content",
-  "Base 100 inverted": "bg-base-content text-base-100",
-};
 
 function Footer({
   logo,
@@ -172,7 +164,8 @@ function Footer({
   extraLinks = [],
   backToTheTop,
   layout = {
-    backgroundColor: "Primary",
+    backgroundColor: "#fff",
+    textColor: "#000",
     variation: "Variation 1",
     hide: {
       logo: false,
@@ -222,10 +215,11 @@ function Footer({
 
   return (
     <footer
-      class={clx(
-        "w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10",
-        LAYOUT[layout?.backgroundColor ?? "Primary"],
-      )}
+      style={{
+        backgroundColor: layout?.backgroundColor,
+        color: layout?.textColor,
+      }}
+      class="w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10"
     >
       <div class="lg:container mx-6 lg:mx-auto">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
@@ -246,7 +240,7 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
+              {/* <PoweredByDeco /> */}
               {_links}
             </div>
           </div>
@@ -268,7 +262,7 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
+              {/* <PoweredByDeco /> */}
               {_links}
             </div>
           </div>
@@ -294,7 +288,7 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
+              {/* <PoweredByDeco /> */}
               {_links}
             </div>
           </div>
@@ -323,7 +317,7 @@ function Footer({
             <Divider />
             <div class="flex flex-col md:flex-row md:justify-between gap-10 md:items-center">
               {_logo}
-              <PoweredByDeco />
+              {/* <PoweredByDeco /> */}
             </div>
           </div>
         )}
@@ -342,7 +336,7 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:items-center">
-              <PoweredByDeco />
+              {/* <PoweredByDeco /> */}
               <div class="flex flex-col md:flex-row gap-10 md:items-center">
                 {_links}
                 {_region}

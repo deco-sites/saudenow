@@ -1,10 +1,12 @@
-import type { ImageWidget } from "apps/admin/widgets.ts";
+import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
   logo?: {
     image: ImageWidget;
-    description?: string;
+    description?: HTMLWidget;
+    width?: number;
+    height?: number;
   };
 }
 
@@ -18,13 +20,11 @@ export default function Logo({ logo }: Props) {
               loading="lazy"
               src={logo?.image}
               alt={logo?.description}
-              width={200}
-              height={200}
+              width={logo?.width || 200}
+              height={logo?.height || 200}
             />
           </div>
-          <div class="">
-            {logo?.description}
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: logo?.description || "" }} />
         </div>
       )}
     </>
