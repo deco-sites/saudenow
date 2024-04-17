@@ -66,7 +66,8 @@ export interface Layout {
     | "Variation 2"
     | "Variation 3"
     | "Variation 4"
-    | "Variation 5";
+    | "Variation 5"
+    | "Variation 6";
   hide?: {
     logo?: boolean;
     newsletter?: boolean;
@@ -221,7 +222,7 @@ function Footer({
       }}
       class="w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10"
     >
-      <div class="lg:container mx-6 lg:mx-auto">
+      <div class="lg:container px-6 lg:mx-auto">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-10">
             <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
@@ -341,6 +342,30 @@ function Footer({
                 {_links}
                 {_region}
               </div>
+            </div>
+          </div>
+        )}
+        {layout?.variation === "Variation 6" && (
+          <div class="flex flex-col gap-10">
+            <div class="flex flex-col md:flex-row gap-10">
+              <div class="flex flex-col gap-10 lg:w-1/2">
+                {_logo}
+                {_payments}
+                {_apps}
+                {_region}
+              </div>
+              <div class="flex flex-col gap-10 lg:gap-20 lg:w-1/2 lg:pr-10">
+                <div class="flex flex-col lg:flex-row items-start w-full gap-10">
+                  {_sectionLinks}
+                  {_social}
+                </div>
+                {_newsletter}
+              </div>
+            </div>
+            <Divider />
+            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
+              {/* <PoweredByDeco /> */}
+              {_links}
             </div>
           </div>
         )}
