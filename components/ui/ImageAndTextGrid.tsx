@@ -47,7 +47,7 @@ export interface Banner {
 export interface Props {
   banners?: Banner[];
   backgroundImage?: {
-    source: ImageWidget;
+    source?: ImageWidget;
     width?: number;
     height?: number;
   };
@@ -177,7 +177,7 @@ export default function ImageAndTextGrid(
       {banners?.map((banner) => <ImageAndText {...banner} />)}
       {backgroundImage && (
         <Image
-          src={backgroundImage.source}
+          src={backgroundImage.source || ""}
           width={backgroundImage.width || 1920}
           height={backgroundImage.height || 720}
           loading="lazy"
