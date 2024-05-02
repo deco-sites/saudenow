@@ -19,6 +19,8 @@ export interface TextCardProps {
    * @default #ccc
    */
   borderColor?: string;
+
+  boxShadowRemoved?: boolean;
 }
 
 export interface Props {
@@ -37,15 +39,20 @@ export interface Props {
 }
 
 function TextCard(
-  { title, description, background, borderColor }: TextCardProps,
+  { title, description, background, borderColor, boxShadowRemoved = false }:
+    TextCardProps,
 ) {
   return (
     <div
-      style={{ backgroundColor: background, borderColor: borderColor }}
+      style={{
+        backgroundColor: background,
+        borderColor: borderColor,
+        boxShadow: !boxShadowRemoved ? `0 2px 3px -1px ${borderColor}` : "",
+      }}
       href="#"
       class={`${
         borderColor && "border"
-      } flex flex-col max-w-sm p-6 rounded-lg shadow-md shadow-sky-500 gap-2`}
+      } flex flex-col max-w-sm p-6 rounded-lg gap-2`}
     >
       {title && <div dangerouslySetInnerHTML={{ __html: title }} />}
       {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
