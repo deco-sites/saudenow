@@ -1,8 +1,9 @@
 import Button, {
   Props as ButtonProps,
 } from "$store/components/ui/CustomizedButton.tsx";
-import { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
+
+import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Banner {
   bannerImage: {
@@ -163,11 +164,7 @@ function ImageAndText({
               )}
             </div>
           )}
-          {button && (
-            <>
-              <Button {...button} />
-            </>
-          )}
+          {button && <Button {...button} />}
         </div>
       </div>
     </div>
