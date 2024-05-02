@@ -1,13 +1,12 @@
 import { AppContext } from "$store/apps/site.ts";
-import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
-import type { SectionProps } from "deco/types.ts";
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import type { SectionProps } from "deco/types.ts";
 
 export interface Logo {
   src: ImageWidget;
@@ -15,18 +14,25 @@ export interface Logo {
   width?: number;
   height?: number;
 }
-export interface Buttons {
-  hideSearchButton?: boolean;
-  hideAccountButton?: boolean;
-  hideWishlistButton?: boolean;
-  hideCartButton?: boolean;
+
+export interface ButtonProps {
+  link?: string;
+  target?: "_blank" | "_self";
+  text?: string;
+  /**
+   * @format color-input
+   */
+  textColor?: string;
+  /**
+   * @format color-input
+   */
+  backgroundColor?: string;
+
+  disabled?: boolean;
 }
 
 export interface Props {
   alerts?: string[];
-
-  /** @title Search Bar */
-  searchbar?: Omit<SearchbarProps, "platform">;
 
   /**
    * @title Navigation items
@@ -39,12 +45,19 @@ export interface Props {
 
   logoPosition?: "left" | "center";
 
-  buttons?: Buttons;
+  button?: ButtonProps;
+  /**
+   * @format color-input
+   */
+  textColor?: string;
+  /**
+   * @format color-input
+   */
+  backgroundColor?: string;
 }
 
 function Header({
   alerts,
-  searchbar,
   navItems = [
     {
       "@type": "SiteNavigationElement",
@@ -75,7 +88,9 @@ function Header({
     alt: "Logo",
   },
   logoPosition = "center",
-  buttons,
+  textColor,
+  backgroundColor,
+  button,
   device,
 }: SectionProps<typeof loader>) {
   const platform = usePlatform();
@@ -86,18 +101,19 @@ function Header({
       <header style={{ height: headerHeight }}>
         <Drawers
           menu={{ items }}
-          searchbar={searchbar}
           platform={platform}
         >
-          <div class="bg-base-100 fixed w-full z-50">
+          <div
+            style={{ backgroundColor: backgroundColor, color: textColor }}
+            class="fixed w-full z-50"
+          >
             {alerts && alerts.length > 0 && <Alert alerts={alerts} />}
             <Navbar
               device={device}
               items={items}
-              searchbar={searchbar && { ...searchbar, platform }}
               logo={logo}
+              button={button}
               logoPosition={logoPosition}
-              buttons={buttons}
             />
           </div>
         </Drawers>
