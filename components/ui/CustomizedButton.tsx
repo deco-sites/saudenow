@@ -2,17 +2,26 @@ export interface Props {
   link?: string;
   target?: "_blank" | "_self";
   text?: string;
+  /**
+   * @format color-input
+   */
+  textColor?: string;
+  /**
+   * @format color-input
+   */
+  backgroundColor?: string;
   type?:
     | "purple-to-blue"
     | "cyan-to-blue"
     | "green-to-blue"
     | "purple-to-pink"
     | "red-to-yellow"
-    | "linear-gradient";
+    | "linear-gradient"
+    | "customized";
 }
 
 export default function CustomizedButton(
-  { text, link, target, type }: Props,
+  { text, textColor, backgroundColor, link, target, type }: Props,
 ) {
   const anchorTypeToClass: Record<string, string> = {
     "purple-to-blue":
@@ -32,7 +41,21 @@ export default function CustomizedButton(
       <a
         href={link || "#"}
         target={target || "_blank"}
-        class="text-white font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 bg-gradient-to-r from-primary-linear-gradient to-secondary-linear-gradient lg:text-xl"
+        style={{ color: textColor }}
+        class="font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 bg-gradient-to-r from-primary-linear-gradient to-secondary-linear-gradient lg:text-xl"
+      >
+        {text}
+      </a>
+    );
+  }
+
+  if (type === "customized") {
+    return (
+      <a
+        href={link || "#"}
+        target={target || "_blank"}
+        style={{ color: textColor, backgroundColor: backgroundColor }}
+        class="font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 lg:text-xl"
       >
         {text}
       </a>
@@ -43,9 +66,10 @@ export default function CustomizedButton(
     <a
       href={link || "#"}
       target={target || "_blank"}
+      style={{ color: textColor }}
       class={`${
         anchorTypeToClass[type ?? "purple-to-blue"]
-      } relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br`}
+      } relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br`}
     >
       <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
         {text}
