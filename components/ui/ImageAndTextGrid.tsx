@@ -46,6 +46,11 @@ export interface Banner {
 
 export interface Props {
   banners?: Banner[];
+  backgroundImage?: {
+    source: ImageWidget;
+    width?: number;
+    height?: number;
+  };
   itemsPerLine: {
     /** @default 2 */
     mobile: 1 | 2;
@@ -158,7 +163,8 @@ function ImageAndText({
 }
 
 export default function ImageAndTextGrid(
-  { banners, itemsPerLine, hasContainerClass, hasSpacement }: Props,
+  { banners, itemsPerLine, hasContainerClass, hasSpacement, backgroundImage }:
+    Props,
 ) {
   const { mobile, desktop } = itemsPerLine;
 
@@ -166,9 +172,19 @@ export default function ImageAndTextGrid(
     <div
       class={`${MOBILE_COLUMNS[mobile]} ${DESKTOP_COLUMNS[desktop]} ${
         hasContainerClass && "container"
-      } ${hasSpacement && "gap-6 py-4"} grid w-full`}
+      } ${hasSpacement && "gap-6 py-4"} grid w-full relative`}
     >
       {banners?.map((banner) => <ImageAndText {...banner} />)}
+      {backgroundImage && (
+        <Image
+          src={backgroundImage.source}
+          width={backgroundImage.width || 1920}
+          height={backgroundImage.height || 720}
+          loading="lazy"
+          decoding="async"
+          class="bg-cover bg-center w-full h-full absolute"
+        />
+      )}
     </div>
   );
 }
