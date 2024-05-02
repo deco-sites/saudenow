@@ -16,6 +16,11 @@ export interface Banner {
    * @format color
    */
   backgroundColor?: string;
+  backgroundImage?: {
+    source?: ImageWidget;
+    width?: number;
+    height?: number;
+  };
   title: HTMLWidget;
   description?: HTMLWidget;
   button?: ButtonProps;
@@ -46,11 +51,6 @@ export interface Banner {
 
 export interface Props {
   banners?: Banner[];
-  backgroundImage?: {
-    source?: ImageWidget;
-    width?: number;
-    height?: number;
-  };
   itemsPerLine: {
     /** @default 2 */
     mobile: 1 | 2;
@@ -92,6 +92,7 @@ const DESKTOP_ALIGNMENT: Record<string, string> = {
 
 function ImageAndText({
   backgroundColor = "#fff",
+  backgroundImage,
   title,
   description,
   button,
@@ -107,13 +108,24 @@ function ImageAndText({
 }: Banner) {
   return (
     <div
-      style={{ backgroundColor: backgroundColor }}
-      class="flex justify-center w-full h-full items-center py-4 px-6"
+      style={{ backgroundColor: !backgroundImage ? backgroundColor : "" }}
+      class="flex justify-center w-full h-full items-center py-4 px-6 z-20 relative"
     >
+      {backgroundImage && (
+        <Image
+          src={backgroundImage.source || ""}
+          width={backgroundImage.width || 1920}
+          height={backgroundImage.height || 720}
+          loading="lazy"
+          decoding="async"
+          class="bg-cover bg-center w-full h-full absolute z-10"
+        />
+      )}
+
       <div
         class={`${
           hasContainerClass && "container"
-        } flex justify-between w-full h-full items-center gap-3 ${maxWidth} ${mobilePosition} ${mobileAlignment} ${
+        } flex justify-between w-full h-full items-center gap-3 z-20 ${maxWidth} ${mobilePosition} ${mobileAlignment} ${
           DESKTOP_POSITION[desktopPosition]
         } ${DESKTOP_ALIGNMENT[desktopAlignment]} ${
           hasBorderClass && "rounded-lg"
@@ -163,8 +175,7 @@ function ImageAndText({
 }
 
 export default function ImageAndTextGrid(
-  { banners, itemsPerLine, hasContainerClass, hasSpacement, backgroundImage }:
-    Props,
+  { banners, itemsPerLine, hasContainerClass, hasSpacement }: Props,
 ) {
   const { mobile, desktop } = itemsPerLine;
 
@@ -172,19 +183,9 @@ export default function ImageAndTextGrid(
     <div
       class={`${MOBILE_COLUMNS[mobile]} ${DESKTOP_COLUMNS[desktop]} ${
         hasContainerClass && "container"
-      } ${hasSpacement && "gap-6 py-4"} grid w-full relative`}
+      } ${hasSpacement && "gap-6 py-4"} grid w-full`}
     >
       {banners?.map((banner) => <ImageAndText {...banner} />)}
-      {backgroundImage && (
-        <Image
-          src={backgroundImage.source || ""}
-          width={backgroundImage.width || 1920}
-          height={backgroundImage.height || 720}
-          loading="lazy"
-          decoding="async"
-          class="bg-cover bg-center w-full h-full absolute"
-        />
-      )}
     </div>
   );
 }

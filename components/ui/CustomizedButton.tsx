@@ -18,11 +18,15 @@ export interface Props {
     | "red-to-yellow"
     | "linear-gradient"
     | "customized";
+
+  disabled?: boolean;
 }
 
 export default function CustomizedButton(
-  { text, textColor, backgroundColor, link, target, type }: Props,
+  { text, textColor, backgroundColor, link, target, type, disabled }: Props,
 ) {
+  if (disabled) return null;
+
   const anchorTypeToClass: Record<string, string> = {
     "purple-to-blue":
       "from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300",
