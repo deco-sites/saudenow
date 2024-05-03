@@ -20,6 +20,7 @@ export interface Props {
   button?: ButtonProps;
   position?: "flex-row" | "flex-col" | "flex-row-reverse" | "flex-col-reverse";
   hasContainerClass?: boolean;
+  hasSubContainerClass?: boolean;
   hasPaddingOnTop?: boolean;
 }
 
@@ -32,6 +33,7 @@ export default function CallToAction(
     position = "flex-row",
     hasPaddingOnTop = false,
     hasContainerClass = false,
+    hasSubContainerClass = false,
   }: Props,
 ) {
   return (
@@ -59,7 +61,7 @@ export default function CallToAction(
 
         <div
           class={`flex items-center justify-center w-full gap-6 lg:gap-20 z-20 pb-6 ${position} ${
-            hasContainerClass ? "container" : ""
+            hasSubContainerClass ? "container" : ""
           }`}
         >
           <div dangerouslySetInnerHTML={{ __html: text || "" }} />
