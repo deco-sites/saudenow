@@ -24,13 +24,12 @@ function Navbar(
     return (
       <div
         style={{ height: navbarHeight }}
-        class="lg:hidden grid grid-cols-3 justify-between items-center w-full px-6 pb-6 gap-2"
+        class="lg:hidden flex justify-between items-center w-full px-6 py-4 gap-2"
       >
-        <MenuButton />
         {logo && (
           <a
             href="/"
-            class="flex-grow inline-flex items-center justify-center"
+            class="flex-grow inline-flex items-center"
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
@@ -42,18 +41,7 @@ function Navbar(
             />
           </a>
         )}
-        {
-          /* {button && !button.disabled && (
-          <a
-            href={button.link || "#"}
-            target={button.target || "_blank"}
-            style={{ color: button.textColor, backgroundColor: button.backgroundColor }}
-            class="font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 h-1/2"
-          >
-            {button.text}
-          </a>
-        )} */
-        }
+        <MenuButton />
       </div>
     );
   }

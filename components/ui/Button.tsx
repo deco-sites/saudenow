@@ -6,6 +6,7 @@ export type Props =
   & {
     loading?: boolean;
     ariaLabel?: string;
+    hasBtnClass?: boolean;
   };
 
 const Button = forwardRef<HTMLButtonElement, Props>(({
@@ -15,11 +16,12 @@ const Button = forwardRef<HTMLButtonElement, Props>(({
   disabled,
   ariaLabel,
   children,
+  hasBtnClass = true,
   ...props
 }, ref) => (
   <button
     {...props}
-    className={`btn no-animation ${_class}`}
+    className={`no-animation ${_class} ${hasBtnClass ? "btn" : ""}`}
     disabled={disabled || loading}
     aria-label={ariaLabel || props["aria-label"]}
     type={type}

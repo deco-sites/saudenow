@@ -43,7 +43,7 @@ export default function CallToAction(
     >
       <div
         class={`flex items-center justify-center relative w-full ${
-          hasContainerClass ? "container" : ""
+          hasContainerClass ? "container px-6 xl:px-0" : ""
         }`}
       >
         {backgroundImage && (
@@ -58,7 +58,7 @@ export default function CallToAction(
         )}
 
         <div
-          class={`flex items-center justify-center w-full gap-20 z-20 ${position} ${
+          class={`flex items-center justify-center w-full gap-6 lg:gap-20 z-20 pb-6 ${position} ${
             hasContainerClass ? "container" : ""
           }`}
         >
