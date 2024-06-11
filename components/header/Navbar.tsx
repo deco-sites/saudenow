@@ -50,7 +50,7 @@ function Navbar(
   return (
     <div class="hidden sm:grid sm:grid-cols-2 items-center w-full px-6 container mx-auto">
       <div
-        class={`flex items-center gap-3 col-span-1 ${
+        class={`flex items-center gap-5 col-span-1 ${
           logoPosition === "left" ? "justify-end" : "justify-start"
         }`}
       >
