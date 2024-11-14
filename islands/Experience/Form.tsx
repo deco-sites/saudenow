@@ -10,28 +10,29 @@ export default function Form({ title, button }: FormProps) {
   const loading = useSignal(false);
   const isSent = useSignal(false);
 
+  const formValues = useSignal({
+    name: "",
+    email: "",
+    cellphone: "",
+  });
+
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     try {
       loading.value = true;
 
-      const name = (e.currentTarget.elements.namedItem("name") as RadioNodeList)
-        ?.value;
-      const email =
-        (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
-      const cellphone =
-        (e.currentTarget.elements.namedItem("cellphone") as RadioNodeList)
-          ?.value;
-
       await invoke["deco-sites/saudenow"].actions.experience.form.send({
-        name,
-        email,
-        cellphone,
+        name: formValues.value.name,
+        email: formValues.value.email,
+        cellphone: formValues.value.cellphone,
       });
+    } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
     } finally {
-      loading.value = false;
       isSent.value = true;
+      loading.value = false;
+      formValues.value = { name: "", email: "", cellphone: "" };
     }
   };
 
@@ -43,13 +44,32 @@ export default function Form({ title, button }: FormProps) {
       <div dangerouslySetInnerHTML={{ __html: title }} />
 
       <div class="flex flex-col gap-4 items-center justify-center w-full">
-        <Input name="name" type="text" placeholder="Nome:" required />
-        <Input name="email" type="email" placeholder="E-mail:" required />
+        <Input
+          name="name"
+          type="text"
+          placeholder="Nome:"
+          required
+          value={formValues.value.name}
+          onInput={(e) =>
+            formValues.value.name = (e.target as HTMLInputElement).value}
+        />
+        <Input
+          name="email"
+          type="email"
+          placeholder="E-mail:"
+          required
+          value={formValues.value.email}
+          onInput={(e) =>
+            formValues.value.email = (e.target as HTMLInputElement).value}
+        />
         <Input
           name="cellphone"
           type="text"
           placeholder="Telefone: (xx) xxxxx-xxxx"
           required
+          value={formValues.value.cellphone}
+          onInput={(e) =>
+            formValues.value.cellphone = (e.target as HTMLInputElement).value}
         />
       </div>
 
