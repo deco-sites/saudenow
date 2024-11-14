@@ -1,6 +1,4 @@
-import Icon from "$store/components/ui/Icon.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
-import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
@@ -17,8 +15,6 @@ function Navbar(
     button?: ButtonProps;
   },
 ) {
-  const platform = usePlatform();
-
   // Mobile header
   if (device === "mobile") {
     return (

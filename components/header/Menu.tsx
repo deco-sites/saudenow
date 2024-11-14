@@ -1,4 +1,3 @@
-import Icon from "$store/components/ui/Icon.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 
