@@ -21,3 +21,9 @@ export const formatPrice = (
   currency = "BRL",
   locale = "pt-BR",
 ) => price ? formatter(currency, locale).format(price) : null;
+
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const formatter = new Intl.DateTimeFormat("pt-BR");
+  return formatter.format(date);
+};

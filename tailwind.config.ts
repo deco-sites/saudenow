@@ -19,6 +19,8 @@ export default {
       colors: {
         "primary-linear-gradient": "rgba(0, 183, 201, 1)",
         "secondary-linear-gradient": "rgba(0, 248, 194, 1)",
+        "soft-violet": "#C45EFF",
+        "lemon": "#00F8C2",
       },
     },
   },
