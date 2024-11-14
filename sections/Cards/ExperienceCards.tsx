@@ -1,5 +1,8 @@
 interface Card {
   title: string;
+  /**
+   * @format textarea
+   */
   subtitle: string;
 }
 
@@ -8,7 +11,7 @@ export interface Props {
    * @format rich-text
    */
   title: string;
-  cards: Card[];
+  cards?: Card[];
 }
 
 export default function ExperienceCards({ title, cards = [] }: Props) {
@@ -22,7 +25,7 @@ export default function ExperienceCards({ title, cards = [] }: Props) {
 
         <ul class="grid md:grid-cols-2 lg:grid-cols-3 items-center justify-between gap-6 lg:gap-12 w-full">
           {cards.map(({ title, subtitle }) => (
-            <li class="flex flex-col items-center justify-center gap-3.5 border-experience-linear-gradient p-7 text-white max-w-[359px] min-h-[230px] max-h-[230px]">
+            <li class="flex flex-col items-center justify-between gap-3.5 border-experience-linear-gradient p-7 text-white max-w-[359px] min-h-[230px] max-h-[230px]">
               <span class="font-bold text-xl leading-7 text-center">
                 {title}
               </span>

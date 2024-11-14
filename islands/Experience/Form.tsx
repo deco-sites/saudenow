@@ -43,9 +43,9 @@ export default function Form({ title, button }: FormProps) {
       <div dangerouslySetInnerHTML={{ __html: title }} />
 
       <div class="flex flex-col gap-4 items-center justify-center w-full">
-        <Input name="name" type="text" placeholder="Nome:" />
-        <Input name="email" type="email" placeholder="E-mail:" />
-        <Input name="cellphone" type="text" placeholder="Telefone:" />
+        <Input name="name" type="text" placeholder="Nome:" required />
+        <Input name="email" type="email" placeholder="E-mail:" required />
+        <Input name="cellphone" type="text" placeholder="Telefone: (xx) xxxxx-xxxx" required />
       </div>
 
       {!isSent.value
