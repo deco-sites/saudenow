@@ -44,6 +44,12 @@
     @apply border-l border-transparent duration-200 whitespace-pre-line text-center;
     @apply flex flex-col items-center justify-start gap-8 py-10 px-8 lg:px-12;
   }
+
+  .border-experience-linear-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(to bottom, rgba(0, 248, 194, 1), rgba(196, 94, 255, 1)) 1; /* Gradiente de verde a roxo */
+    border-image-slice: 1;
+  }
 }
 
 .group:disabled .group-disabled\:animate-progress {

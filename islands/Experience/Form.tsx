@@ -6,7 +6,9 @@ import { invoke } from "deco-sites/saudenow/runtime.ts";
 
 export default function Form({ title, button }: FormProps) {
   const { label, backgroundColor, textColor } = button;
+
   const loading = useSignal(false);
+  const isSent = useSignal(false);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -29,12 +31,13 @@ export default function Form({ title, button }: FormProps) {
       });
     } finally {
       loading.value = false;
+      isSent.value = true;
     }
   };
 
   return (
     <form
-      class="flex flex-col items-center justify-center gap-4 rounded-md border-2 border-primary-linear-gradient p-6 w-full"
+      class="flex flex-col items-center justify-center gap-4 border-experience-linear-gradient p-6 w-full"
       onSubmit={handleSubmit}
     >
       <div dangerouslySetInnerHTML={{ __html: title }} />
@@ -45,17 +48,25 @@ export default function Form({ title, button }: FormProps) {
         <Input name="cellphone" type="text" placeholder="Telefone:" />
       </div>
 
-      <button
-        type="submit"
-        style={{ color: textColor, backgroundColor }}
-        aria-label="Enviar formulário"
-        disabled={loading.value}
-        class="flex items-center justify-center font-bold text-black rounded-md px-8 py-1 disabled:cursor-not-allowed"
-      >
-        {loading.value
-          ? <span class="loading loading-spinner" />
-          : <span>{label}</span>}
-      </button>
+      {!isSent.value
+        ? (
+          <button
+            type="submit"
+            style={{ color: textColor, backgroundColor }}
+            aria-label="Enviar formulário"
+            disabled={loading.value}
+            class="flex items-center justify-center font-bold text-black rounded-md px-8 py-1.5 disabled:cursor-not-allowed"
+          >
+            {loading.value
+              ? <span class="loading loading-spinner" />
+              : <span>{label}</span>}
+          </button>
+        )
+        : (
+          <span class="text-white font-bold text-lg">
+            Agradecemos a sua inscrição!
+          </span>
+        )}
     </form>
   );
 }
