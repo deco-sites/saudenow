@@ -37,6 +37,7 @@ export interface Banner {
     | "flex-col-reverse"
     | "flex-row-reverse";
   desktopAlignment?: "items-start" | "items-center" | "items-end";
+  alignment?: "items-start" | "items-center" | "items-end";
   titleAppearsFirst?: boolean;
   hasBorderClass?: boolean;
   hasContainerClass?: boolean;
@@ -48,6 +49,7 @@ export interface Banner {
     | "max-w-[90%]"
     | "max-w-[95%]"
     | "max-w-full";
+  removePadding?: boolean;
 }
 
 export interface Props {
@@ -103,15 +105,19 @@ function ImageAndText({
   mobileAlignment = "items-center",
   desktopPosition = "flex-row",
   desktopAlignment = "items-start",
+  alignment = "items-center",
   titleAppearsFirst = false,
   hasBorderClass = false,
   hasContainerClass = false,
   maxWidth = "max-w-full",
+  removePadding = false,
 }: Banner) {
   return (
     <div
-      style={{ backgroundColor: !backgroundImage ? backgroundColor : "" }}
-      class="flex justify-center w-full h-full items-center py-4 px-6 z-20 relative"
+      style={{ backgroundColor: !backgroundImage ? backgroundColor : null }}
+      class={`flex justify-center w-full h-full px-6 z-20 relative ${alignment} ${
+        removePadding ? "pt-4" : "py-4"
+      }`}
     >
       {backgroundImage && (
         <Image
