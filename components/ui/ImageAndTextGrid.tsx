@@ -24,7 +24,7 @@ export interface Banner {
   };
   title: HTMLWidget;
   description?: HTMLWidget;
-  button?: ButtonProps;
+  buttons?: ButtonProps[];
   mobilePosition?:
     | "flex-col"
     | "flex-row"
@@ -51,6 +51,7 @@ export interface Banner {
 }
 
 export interface Props {
+  id?: string;
   banners?: Banner[];
   itemsPerLine: {
     /** @default 2 */
@@ -96,7 +97,7 @@ function ImageAndText({
   backgroundImage,
   title,
   description,
-  button,
+  buttons = [],
   bannerImage,
   mobilePosition = "flex-row",
   mobileAlignment = "items-center",
@@ -164,7 +165,12 @@ function ImageAndText({
               )}
             </div>
           )}
-          {button && <Button {...button} />}
+
+          {buttons && buttons.length > 0 && (
+            <ul class="flex flex-col lg:flex-row gap-4">
+              {buttons.map((button) => <Button {...button} />)}
+            </ul>
+          )}
         </div>
       </div>
     </div>
@@ -172,12 +178,13 @@ function ImageAndText({
 }
 
 export default function ImageAndTextGrid(
-  { banners, itemsPerLine, hasContainerClass, hasSpacement }: Props,
+  { id, banners, itemsPerLine, hasContainerClass, hasSpacement }: Props,
 ) {
   const { mobile, desktop } = itemsPerLine;
 
   return (
     <div
+      id={id}
       class={`${MOBILE_COLUMNS[mobile]} ${DESKTOP_COLUMNS[desktop]} ${
         hasContainerClass && "container"
       } ${hasSpacement && "gap-6 py-4"} grid w-full`}

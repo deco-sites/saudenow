@@ -2,11 +2,15 @@ import Button, {
   Props as ButtonProps,
 } from "$store/components/ui/CustomizedButton.tsx";
 
-import type { HTMLWidget } from "apps/admin/widgets.ts";
-
 export interface TextCardProps {
-  title?: HTMLWidget;
-  description?: HTMLWidget;
+  /**
+   * @format rich-text
+   */
+  title?: string;
+  /**
+   * @format rich-text
+   */
+  description?: string;
   /**
    * @format color
    * @description Caso a cor de background sobreponha a cor do texto, modifique a cor do texto por meio da opção de HTML de cada um.
@@ -24,7 +28,10 @@ export interface TextCardProps {
 }
 
 export interface Props {
-  title?: HTMLWidget;
+  /**
+   * @format rich-text
+   */
+  title?: string;
   /**
    * @format color
    * @default #ccc

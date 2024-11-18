@@ -43,7 +43,10 @@ function Header({ title, description }: Omit<Props, "form">) {
 
 export default function FormContent(props: Props) {
   return (
-    <div class="flex flex-col items-center justify-center w-full px-4 py-10 text-white bg-black">
+    <div
+      id="form"
+      class="flex flex-col items-center justify-center w-full px-4 py-10 text-white bg-black"
+    >
       <div class="flex flex-col gap-8 items-center justify-center max-w-5xl mx-auto">
         <Header {...props} />
         <Form {...props.form} />

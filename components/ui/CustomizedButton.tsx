@@ -10,6 +10,10 @@ export interface Props {
    * @format color-input
    */
   backgroundColor?: string;
+  /**
+   * @format color-input
+   */
+  borderColor?: string;
   type?:
     | "purple-to-blue"
     | "cyan-to-blue"
@@ -23,7 +27,16 @@ export interface Props {
 }
 
 export default function CustomizedButton(
-  { text, textColor, backgroundColor, link, target, type, disabled }: Props,
+  {
+    text,
+    textColor,
+    backgroundColor,
+    borderColor,
+    link,
+    target,
+    type,
+    disabled,
+  }: Props,
 ) {
   if (disabled) return null;
 
@@ -58,8 +71,14 @@ export default function CustomizedButton(
       <a
         href={link || "#"}
         target={target || "_blank"}
-        style={{ color: textColor, backgroundColor: backgroundColor }}
-        class="font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 lg:text-xl"
+        style={{
+          color: textColor,
+          backgroundColor: backgroundColor,
+          borderColor,
+        }}
+        class={`font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 lg:text-xl ${
+          borderColor ? "border" : "border-none"
+        }`}
       >
         {text}
       </a>
