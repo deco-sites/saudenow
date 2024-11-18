@@ -38,38 +38,39 @@ import * as $$$$$$25 from "./sections/Content/Testimonials.tsx";
 import * as $$$$$$26 from "./sections/Content/TextCardGrid.tsx";
 import * as $$$$$$27 from "./sections/Content/TextWithImage.tsx";
 import * as $$$$$$28 from "./sections/Experience/Form.tsx";
-import * as $$$$$$29 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$30 from "./sections/Gallery.tsx";
-import * as $$$$$$31 from "./sections/Header/Header.tsx";
-import * as $$$$$$32 from "./sections/Images/Banner.tsx";
-import * as $$$$$$33 from "./sections/Images/BannerGrid.tsx";
-import * as $$$$$$34 from "./sections/Images/Carousel.tsx";
-import * as $$$$$$35 from "./sections/Images/Image.tsx";
-import * as $$$$$$36 from "./sections/Images/ImageGallery.tsx";
-import * as $$$$$$37 from "./sections/Images/ShoppableBanner.tsx";
-import * as $$$$$$38 from "./sections/Layout/Container.tsx";
-import * as $$$$$$39 from "./sections/Layout/Flex.tsx";
-import * as $$$$$$40 from "./sections/Layout/Grid.tsx";
-import * as $$$$$$41 from "./sections/Layout/GridItem.tsx";
-import * as $$$$$$42 from "./sections/Links/LinkTree.tsx";
-import * as $$$$$$43 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$44 from "./sections/Miscellaneous/CampaignTimer.tsx";
-import * as $$$$$$45 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$46 from "./sections/Miscellaneous/Slide.tsx";
-import * as $$$$$$47 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$48 from "./sections/Product/ImageGalleryFrontBack.tsx";
-import * as $$$$$$49 from "./sections/Product/ImageGallerySlider.tsx";
-import * as $$$$$$50 from "./sections/Product/NotFound.tsx";
-import * as $$$$$$51 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$52 from "./sections/Product/ProductInfo.tsx";
-import * as $$$$$$53 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$54 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$55 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$56 from "./sections/Product/ShelfWithImage.tsx";
-import * as $$$$$$57 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$58 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$59 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$60 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$29 from "./sections/Experience/GradientSection.tsx";
+import * as $$$$$$30 from "./sections/Footer/Footer.tsx";
+import * as $$$$$$31 from "./sections/Gallery.tsx";
+import * as $$$$$$32 from "./sections/Header/Header.tsx";
+import * as $$$$$$33 from "./sections/Images/Banner.tsx";
+import * as $$$$$$34 from "./sections/Images/BannerGrid.tsx";
+import * as $$$$$$35 from "./sections/Images/Carousel.tsx";
+import * as $$$$$$36 from "./sections/Images/Image.tsx";
+import * as $$$$$$37 from "./sections/Images/ImageGallery.tsx";
+import * as $$$$$$38 from "./sections/Images/ShoppableBanner.tsx";
+import * as $$$$$$39 from "./sections/Layout/Container.tsx";
+import * as $$$$$$40 from "./sections/Layout/Flex.tsx";
+import * as $$$$$$41 from "./sections/Layout/Grid.tsx";
+import * as $$$$$$42 from "./sections/Layout/GridItem.tsx";
+import * as $$$$$$43 from "./sections/Links/LinkTree.tsx";
+import * as $$$$$$44 from "./sections/Links/Shortcuts.tsx";
+import * as $$$$$$45 from "./sections/Miscellaneous/CampaignTimer.tsx";
+import * as $$$$$$46 from "./sections/Miscellaneous/CookieConsent.tsx";
+import * as $$$$$$47 from "./sections/Miscellaneous/Slide.tsx";
+import * as $$$$$$48 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$49 from "./sections/Product/ImageGalleryFrontBack.tsx";
+import * as $$$$$$50 from "./sections/Product/ImageGallerySlider.tsx";
+import * as $$$$$$51 from "./sections/Product/NotFound.tsx";
+import * as $$$$$$52 from "./sections/Product/NotFoundChallenge.tsx";
+import * as $$$$$$53 from "./sections/Product/ProductInfo.tsx";
+import * as $$$$$$54 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$55 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$56 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$57 from "./sections/Product/ShelfWithImage.tsx";
+import * as $$$$$$58 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$59 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$60 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$61 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
   "loaders": {
@@ -111,38 +112,39 @@ const manifest = {
     "deco-sites/saudenow/sections/Content/TextCardGrid.tsx": $$$$$$26,
     "deco-sites/saudenow/sections/Content/TextWithImage.tsx": $$$$$$27,
     "deco-sites/saudenow/sections/Experience/Form.tsx": $$$$$$28,
-    "deco-sites/saudenow/sections/Footer/Footer.tsx": $$$$$$29,
-    "deco-sites/saudenow/sections/Gallery.tsx": $$$$$$30,
-    "deco-sites/saudenow/sections/Header/Header.tsx": $$$$$$31,
-    "deco-sites/saudenow/sections/Images/Banner.tsx": $$$$$$32,
-    "deco-sites/saudenow/sections/Images/BannerGrid.tsx": $$$$$$33,
-    "deco-sites/saudenow/sections/Images/Carousel.tsx": $$$$$$34,
-    "deco-sites/saudenow/sections/Images/Image.tsx": $$$$$$35,
-    "deco-sites/saudenow/sections/Images/ImageGallery.tsx": $$$$$$36,
-    "deco-sites/saudenow/sections/Images/ShoppableBanner.tsx": $$$$$$37,
-    "deco-sites/saudenow/sections/Layout/Container.tsx": $$$$$$38,
-    "deco-sites/saudenow/sections/Layout/Flex.tsx": $$$$$$39,
-    "deco-sites/saudenow/sections/Layout/Grid.tsx": $$$$$$40,
-    "deco-sites/saudenow/sections/Layout/GridItem.tsx": $$$$$$41,
-    "deco-sites/saudenow/sections/Links/LinkTree.tsx": $$$$$$42,
-    "deco-sites/saudenow/sections/Links/Shortcuts.tsx": $$$$$$43,
-    "deco-sites/saudenow/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$44,
-    "deco-sites/saudenow/sections/Miscellaneous/CookieConsent.tsx": $$$$$$45,
-    "deco-sites/saudenow/sections/Miscellaneous/Slide.tsx": $$$$$$46,
-    "deco-sites/saudenow/sections/Newsletter/Newsletter.tsx": $$$$$$47,
-    "deco-sites/saudenow/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$48,
-    "deco-sites/saudenow/sections/Product/ImageGallerySlider.tsx": $$$$$$49,
-    "deco-sites/saudenow/sections/Product/NotFound.tsx": $$$$$$50,
-    "deco-sites/saudenow/sections/Product/NotFoundChallenge.tsx": $$$$$$51,
-    "deco-sites/saudenow/sections/Product/ProductInfo.tsx": $$$$$$52,
-    "deco-sites/saudenow/sections/Product/ProductShelf.tsx": $$$$$$53,
-    "deco-sites/saudenow/sections/Product/ProductShelfTabbed.tsx": $$$$$$54,
-    "deco-sites/saudenow/sections/Product/SearchResult.tsx": $$$$$$55,
-    "deco-sites/saudenow/sections/Product/ShelfWithImage.tsx": $$$$$$56,
-    "deco-sites/saudenow/sections/Product/Wishlist.tsx": $$$$$$57,
-    "deco-sites/saudenow/sections/Social/InstagramPosts.tsx": $$$$$$58,
-    "deco-sites/saudenow/sections/Social/WhatsApp.tsx": $$$$$$59,
-    "deco-sites/saudenow/sections/Theme/Theme.tsx": $$$$$$60,
+    "deco-sites/saudenow/sections/Experience/GradientSection.tsx": $$$$$$29,
+    "deco-sites/saudenow/sections/Footer/Footer.tsx": $$$$$$30,
+    "deco-sites/saudenow/sections/Gallery.tsx": $$$$$$31,
+    "deco-sites/saudenow/sections/Header/Header.tsx": $$$$$$32,
+    "deco-sites/saudenow/sections/Images/Banner.tsx": $$$$$$33,
+    "deco-sites/saudenow/sections/Images/BannerGrid.tsx": $$$$$$34,
+    "deco-sites/saudenow/sections/Images/Carousel.tsx": $$$$$$35,
+    "deco-sites/saudenow/sections/Images/Image.tsx": $$$$$$36,
+    "deco-sites/saudenow/sections/Images/ImageGallery.tsx": $$$$$$37,
+    "deco-sites/saudenow/sections/Images/ShoppableBanner.tsx": $$$$$$38,
+    "deco-sites/saudenow/sections/Layout/Container.tsx": $$$$$$39,
+    "deco-sites/saudenow/sections/Layout/Flex.tsx": $$$$$$40,
+    "deco-sites/saudenow/sections/Layout/Grid.tsx": $$$$$$41,
+    "deco-sites/saudenow/sections/Layout/GridItem.tsx": $$$$$$42,
+    "deco-sites/saudenow/sections/Links/LinkTree.tsx": $$$$$$43,
+    "deco-sites/saudenow/sections/Links/Shortcuts.tsx": $$$$$$44,
+    "deco-sites/saudenow/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$45,
+    "deco-sites/saudenow/sections/Miscellaneous/CookieConsent.tsx": $$$$$$46,
+    "deco-sites/saudenow/sections/Miscellaneous/Slide.tsx": $$$$$$47,
+    "deco-sites/saudenow/sections/Newsletter/Newsletter.tsx": $$$$$$48,
+    "deco-sites/saudenow/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$49,
+    "deco-sites/saudenow/sections/Product/ImageGallerySlider.tsx": $$$$$$50,
+    "deco-sites/saudenow/sections/Product/NotFound.tsx": $$$$$$51,
+    "deco-sites/saudenow/sections/Product/NotFoundChallenge.tsx": $$$$$$52,
+    "deco-sites/saudenow/sections/Product/ProductInfo.tsx": $$$$$$53,
+    "deco-sites/saudenow/sections/Product/ProductShelf.tsx": $$$$$$54,
+    "deco-sites/saudenow/sections/Product/ProductShelfTabbed.tsx": $$$$$$55,
+    "deco-sites/saudenow/sections/Product/SearchResult.tsx": $$$$$$56,
+    "deco-sites/saudenow/sections/Product/ShelfWithImage.tsx": $$$$$$57,
+    "deco-sites/saudenow/sections/Product/Wishlist.tsx": $$$$$$58,
+    "deco-sites/saudenow/sections/Social/InstagramPosts.tsx": $$$$$$59,
+    "deco-sites/saudenow/sections/Social/WhatsApp.tsx": $$$$$$60,
+    "deco-sites/saudenow/sections/Theme/Theme.tsx": $$$$$$61,
   },
   "actions": {
     "deco-sites/saudenow/actions/experience/form/send.ts": $$$$$$$$$0,
