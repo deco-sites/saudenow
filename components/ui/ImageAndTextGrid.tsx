@@ -116,7 +116,7 @@ function ImageAndText({
     <div
       style={{ backgroundColor: !backgroundImage ? backgroundColor : null }}
       class={`flex justify-center w-full h-full px-6 z-20 relative ${alignment} ${
-        removePadding ? "pt-4" : "py-4"
+        removePadding ? "md:pt-4" : "py-4"
       }`}
     >
       {backgroundImage && (

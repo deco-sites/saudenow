@@ -33,7 +33,8 @@ export interface ButtonProps {
 
 export interface Props {
   alerts?: string[];
-
+  height?: string;
+  disableMenuButton?: boolean;
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
@@ -58,28 +59,9 @@ export interface Props {
 
 function Header({
   alerts,
-  navItems = [
-    {
-      "@type": "SiteNavigationElement",
-      name: "Feminino",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Masculino",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Sale",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Linktree",
-      url: "/",
-    },
-  ],
+  navItems = [],
+  disableMenuButton,
+  height,
   logo = {
     src:
       "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/986b61d4-3847-4867-93c8-b550cb459cc7",
@@ -98,7 +80,7 @@ function Header({
 
   return (
     <>
-      <header style={{ height: headerHeight }}>
+      <header style={{ height: height || headerHeight }}>
         <Drawers
           menu={{ items }}
           platform={platform}
@@ -114,6 +96,7 @@ function Header({
               logo={logo}
               button={button}
               logoPosition={logoPosition}
+              disableMenuButton={disableMenuButton}
             />
           </div>
         </Drawers>

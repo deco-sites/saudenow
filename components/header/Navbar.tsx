@@ -7,12 +7,13 @@ import type { ButtonProps, Logo } from "$store/components/header/Header.tsx";
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
-  { items, logo, logoPosition = "left", button, device }: {
+  { items, logo, logoPosition = "left", button, device, disableMenuButton }: {
     items: SiteNavigationElement[];
     logo?: Logo;
     logoPosition?: "left" | "center";
     device: "mobile" | "desktop" | "tablet";
     button?: ButtonProps;
+    disableMenuButton?: boolean;
   },
 ) {
   // Mobile header
@@ -37,7 +38,7 @@ function Navbar(
             />
           </a>
         )}
-        <MenuButton />
+        {!disableMenuButton && <MenuButton />}
       </div>
     );
   }
