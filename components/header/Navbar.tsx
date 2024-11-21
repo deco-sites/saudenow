@@ -7,13 +7,22 @@ import type { ButtonProps, Logo } from "$store/components/header/Header.tsx";
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
-  { items, logo, logoPosition = "left", button, device, disableMenuButton }: {
+  {
+    items,
+    logo,
+    logoPosition = "left",
+    button,
+    device,
+    disableMenuButton,
+    maxWidth,
+  }: {
     items: SiteNavigationElement[];
     logo?: Logo;
     logoPosition?: "left" | "center";
     device: "mobile" | "desktop" | "tablet";
     button?: ButtonProps;
     disableMenuButton?: boolean;
+    maxWidth?: string;
   },
 ) {
   // Mobile header
@@ -45,7 +54,10 @@ function Navbar(
 
   // Desktop header
   return (
-    <div class="hidden sm:grid sm:grid-cols-2 items-center w-full px-6 container mx-auto">
+    <div
+      style={{ maxWidth }}
+      class="hidden sm:grid sm:grid-cols-2 items-center w-full px-6 container mx-auto"
+    >
       <div
         class={`flex items-center gap-5 col-span-1 ${
           logoPosition === "left" ? "justify-end" : "justify-start"

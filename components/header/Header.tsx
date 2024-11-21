@@ -35,6 +35,7 @@ export interface Props {
   alerts?: string[];
   height?: string;
   disableMenuButton?: boolean;
+  maxWidth?: string;
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
@@ -62,6 +63,7 @@ function Header({
   navItems = [],
   disableMenuButton,
   height,
+  maxWidth,
   logo = {
     src:
       "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/986b61d4-3847-4867-93c8-b550cb459cc7",
@@ -87,7 +89,7 @@ function Header({
         >
           <div
             style={{ backgroundColor: backgroundColor, color: textColor }}
-            class="fixed w-full z-50"
+            class="fixed w-full z-50 mx-auto"
           >
             {alerts && alerts.length > 0 && <Alert alerts={alerts} />}
             <Navbar
@@ -97,6 +99,7 @@ function Header({
               button={button}
               logoPosition={logoPosition}
               disableMenuButton={disableMenuButton}
+              maxWidth={maxWidth}
             />
           </div>
         </Drawers>

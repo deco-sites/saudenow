@@ -80,7 +80,7 @@ export default function EventSchedule({
                       __html: profile.description || "",
                     }}
                   />
-                  <div class="flex items-center justify-center h-0.5 bg-gradient-to-r from-lemon to-soft-violet w-4/5" />
+                  <div class="flex items-center justify-center h-0.5 bg-gradient-to-r from-lemon to-soft-violet w-full md:w-4/5" />
                 </div>
               </div>
             );
