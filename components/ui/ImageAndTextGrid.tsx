@@ -187,7 +187,7 @@ function ImageAndText({
           )}
 
           {experienceButtons && experienceButtons.length > 0 && (
-            <ul class="flex flex-col lg:flex-row gap-9 mt-10">
+            <ul class="flex flex-row gap-6 mt-10">
               {experienceButtons.map((button) => <Button {...button} />)}
             </ul>
           )}
