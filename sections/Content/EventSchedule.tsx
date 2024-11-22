@@ -49,7 +49,7 @@ export default function EventSchedule({
       </div>
 
       {/* Main content container */}
-      <div class="relative z-10 flex flex-col items-center justify-center px-6 py-16 text-center">
+      <div class="relative z-10 flex flex-col items-center justify-center px-6 lg:pt-16 pb-16 text-center">
         {/* Title */}
         {title && (
           <div
