@@ -38,18 +38,18 @@ export default function EventSchedule({
       {/* Backdrop image container with opacity effect */}
       <div class="absolute inset-0 z-10">
         <Image
-          class="w-full h-full object-cover opacity-60"
+          class="w-full h-full object-cover"
           src={image.src}
           alt={image.alt}
           width={image.width || 1921}
           height={image.height || 907}
         />
         {/* Optional backdrop overlay */}
-        <div class="absolute inset-0 bg-black opacity-30" />
+        <div class="absolute inset-0 bg-black opacity-10" />
       </div>
 
       {/* Main content container */}
-      <div class="relative z-10 flex flex-col items-center justify-center px-6 py-16 text-center">
+      <div class="relative z-10 flex flex-col items-center justify-center px-6 lg:pt-16 pb-16 text-center">
         {/* Title */}
         {title && (
           <div
@@ -61,8 +61,6 @@ export default function EventSchedule({
         {/* Profiles list */}
         <div class="flex flex-col items-center gap-10 w-full">
           {profiles.map((profile, index) => {
-            const isLastIndex = index === profiles.length - 1;
-
             return (
               <div
                 key={index}
@@ -76,15 +74,13 @@ export default function EventSchedule({
                   height={134}
                 />
 
-                <div class="flex flex-col gap-4 text-white text-center md:text-left lg:min-w-[777px] max-w-[777px]">
+                <div class="flex flex-col gap-4 text-white text-left lg:min-w-[777px] max-w-[777px]">
                   <p
                     dangerouslySetInnerHTML={{
                       __html: profile.description || "",
                     }}
                   />
-                  {!isLastIndex && (
-                    <div class="flex items-center justify-center h-0.5 bg-gradient-to-r from-lemon to-soft-violet w-4/5" />
-                  )}
+                  <div class="flex items-center justify-center h-0.5 bg-gradient-to-r from-lemon to-soft-violet w-full md:w-4/5" />
                 </div>
               </div>
             );

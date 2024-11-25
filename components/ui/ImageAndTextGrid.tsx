@@ -3,7 +3,7 @@ import Button, {
 } from "$store/components/ui/CustomizedButton.tsx";
 import Image from "apps/website/components/Image.tsx";
 
-import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Banner {
   bannerImage: {
@@ -22,9 +22,16 @@ export interface Banner {
     width?: number;
     height?: number;
   };
-  title: HTMLWidget;
-  description?: HTMLWidget;
+  /**
+   * @format rich-text
+   */
+  title: string;
+  /**
+   * @format rich-text
+   */
+  description?: string;
   buttons?: ButtonProps[];
+  experienceButtons?: ButtonProps[];
   mobilePosition?:
     | "flex-col"
     | "flex-row"
@@ -100,6 +107,7 @@ function ImageAndText({
   title,
   description,
   buttons = [],
+  experienceButtons = [],
   bannerImage,
   mobilePosition = "flex-row",
   mobileAlignment = "items-center",
@@ -116,7 +124,7 @@ function ImageAndText({
     <div
       style={{ backgroundColor: !backgroundImage ? backgroundColor : null }}
       class={`flex justify-center w-full h-full px-6 z-20 relative ${alignment} ${
-        removePadding ? "pt-4" : "py-4"
+        removePadding ? "md:pt-4" : "py-4"
       }`}
     >
       {backgroundImage && (
@@ -175,6 +183,12 @@ function ImageAndText({
           {buttons && buttons.length > 0 && (
             <ul class="flex flex-col lg:flex-row gap-4">
               {buttons.map((button) => <Button {...button} />)}
+            </ul>
+          )}
+
+          {experienceButtons && experienceButtons.length > 0 && (
+            <ul class="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-start flex-row gap-6 mt-10">
+              {experienceButtons.map((button) => <Button {...button} />)}
             </ul>
           )}
         </div>

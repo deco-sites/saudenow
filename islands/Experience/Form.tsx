@@ -44,33 +44,49 @@ export default function Form({ title, button }: FormProps) {
       <div dangerouslySetInnerHTML={{ __html: title }} />
 
       <div class="flex flex-col gap-4 items-center justify-center w-full">
-        <Input
-          name="name"
-          type="text"
-          placeholder="Nome:"
-          required
-          value={formValues.value.name}
-          onInput={(e) =>
-            formValues.value.name = (e.target as HTMLInputElement).value}
-        />
-        <Input
-          name="email"
-          type="email"
-          placeholder="E-mail:"
-          required
-          value={formValues.value.email}
-          onInput={(e) =>
-            formValues.value.email = (e.target as HTMLInputElement).value}
-        />
-        <Input
-          name="cellphone"
-          type="text"
-          placeholder="Telefone: (xx) xxxxx-xxxx"
-          required
-          value={formValues.value.cellphone}
-          onInput={(e) =>
-            formValues.value.cellphone = (e.target as HTMLInputElement).value}
-        />
+        <div class="flex flex-col gap-1 w-full">
+          <label for="name" class="text-sm text-white font-bold">Nome:</label>
+          <Input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Nome:"
+            required
+            value={formValues.value.name}
+            onInput={(e) =>
+              formValues.value.name = (e.target as HTMLInputElement).value}
+          />
+        </div>
+
+        <div class="flex flex-col gap-1 w-full">
+          <label for="email" class="text-sm text-white font-bold">Email:</label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="E-mail:"
+            required
+            value={formValues.value.email}
+            onInput={(e) =>
+              formValues.value.email = (e.target as HTMLInputElement).value}
+          />
+        </div>
+
+        <div class="flex flex-col gap-1 w-full">
+          <label for="cellphone" class="text-sm text-white font-bold">
+            Telefone:
+          </label>
+          <Input
+            id="cellphone"
+            name="cellphone"
+            type="text"
+            placeholder="Telefone: (xx) xxxxx-xxxx"
+            required
+            value={formValues.value.cellphone}
+            onInput={(e) =>
+              formValues.value.cellphone = (e.target as HTMLInputElement).value}
+          />
+        </div>
       </div>
 
       {!isSent.value

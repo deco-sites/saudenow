@@ -2,6 +2,7 @@ export interface Props {
   link?: string;
   target?: "_blank" | "_self";
   text?: string;
+  textSize?: "lg:text-sm" | "lg:text-base" | "lg:text-lg" | "lg:text-xl";
   /**
    * @format color-input
    */
@@ -14,6 +15,12 @@ export interface Props {
    * @format color-input
    */
   borderColor?: string;
+  borderRadius?:
+    | "rounded-sm"
+    | "rounded-md"
+    | "rounded-lg"
+    | "rounded-xl"
+    | "rounded-full";
   type?:
     | "purple-to-blue"
     | "cyan-to-blue"
@@ -36,6 +43,8 @@ export default function CustomizedButton(
     target,
     type,
     disabled,
+    textSize = "lg:text-xl",
+    borderRadius = "rounded-xl",
   }: Props,
 ) {
   if (disabled) return null;
@@ -59,7 +68,7 @@ export default function CustomizedButton(
         href={link || "#"}
         target={target || "_blank"}
         style={{ color: textColor }}
-        class="font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 bg-gradient-to-r from-primary-linear-gradient to-secondary-linear-gradient lg:text-xl"
+        class={`font-semibold leading-[29px] inline-flex items-center justify-center py-2 px-6 bg-gradient-to-r from-primary-linear-gradient to-secondary-linear-gradient ${textSize} ${borderRadius}`}
       >
         {text}
       </a>
@@ -76,7 +85,7 @@ export default function CustomizedButton(
           backgroundColor: backgroundColor,
           borderColor,
         }}
-        class={`font-semibold leading-[29px] rounded-xl inline-flex items-center justify-center py-2 px-6 lg:text-xl ${
+        class={`font-semibold leading-[29px] inline-flex items-center justify-center text-nowrap py-2 px-6 ${borderRadius} ${textSize} ${
           borderColor ? "border" : "border-none"
         }`}
       >

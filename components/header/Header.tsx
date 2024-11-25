@@ -33,7 +33,9 @@ export interface ButtonProps {
 
 export interface Props {
   alerts?: string[];
-
+  height?: string;
+  disableMenuButton?: boolean;
+  maxWidth?: string;
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
@@ -58,28 +60,10 @@ export interface Props {
 
 function Header({
   alerts,
-  navItems = [
-    {
-      "@type": "SiteNavigationElement",
-      name: "Feminino",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Masculino",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Sale",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Linktree",
-      url: "/",
-    },
-  ],
+  navItems = [],
+  disableMenuButton,
+  height,
+  maxWidth,
   logo = {
     src:
       "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/986b61d4-3847-4867-93c8-b550cb459cc7",
@@ -98,14 +82,14 @@ function Header({
 
   return (
     <>
-      <header style={{ height: headerHeight }}>
+      <header style={{ height: height || headerHeight }}>
         <Drawers
           menu={{ items }}
           platform={platform}
         >
           <div
             style={{ backgroundColor: backgroundColor, color: textColor }}
-            class="fixed w-full z-50"
+            class="fixed w-full z-50 mx-auto"
           >
             {alerts && alerts.length > 0 && <Alert alerts={alerts} />}
             <Navbar
@@ -114,6 +98,8 @@ function Header({
               logo={logo}
               button={button}
               logoPosition={logoPosition}
+              disableMenuButton={disableMenuButton}
+              maxWidth={maxWidth}
             />
           </div>
         </Drawers>
