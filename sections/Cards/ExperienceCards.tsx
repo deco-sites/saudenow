@@ -25,7 +25,7 @@ export default function ExperienceCards({ title, cards = [] }: Props) {
 
         <ul class="grid lg:grid-cols-3 items-center justify-center lg:justify-between gap-6 lg:gap-12 w-full">
           {cards.map(({ title, subtitle }) => (
-            <li class="flex flex-col items-center justify-between gap-3.5 border-experience-linear-gradient p-7 text-white max-w-[359px] min-h-full h-full">
+            <li class="flex flex-col items-center gap-3.5 border-experience-linear-gradient p-7 text-white max-w-[359px] min-h-full h-full">
               <span class="font-bold text-xl leading-7 text-center">
                 {title}
               </span>

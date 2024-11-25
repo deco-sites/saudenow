@@ -74,7 +74,7 @@ export default function EventSchedule({
                   height={134}
                 />
 
-                <div class="flex flex-col gap-4 text-white text-center md:text-left lg:min-w-[777px] max-w-[777px]">
+                <div class="flex flex-col gap-4 text-white text-left lg:min-w-[777px] max-w-[777px]">
                   <p
                     dangerouslySetInnerHTML={{
                       __html: profile.description || "",
