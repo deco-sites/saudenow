@@ -4,6 +4,8 @@ import Button, {
 import Image from "apps/website/components/Image.tsx";
 
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import { AdditionalInfoProps } from "deco-sites/saudenow/sections/Experience/ExperienceHero.tsx";
+import Icon from "deco-sites/saudenow/components/ui/Icon.tsx";
 
 export interface Banner {
   bannerImage: {
@@ -26,10 +28,12 @@ export interface Banner {
    * @format rich-text
    */
   title: string;
+  titleLineHeight?: string;
   /**
    * @format rich-text
    */
   description?: string;
+  additionalInfos?: AdditionalInfoProps[];
   buttons?: ButtonProps[];
   experienceButtons?: ButtonProps[];
   mobilePosition?:
@@ -105,6 +109,7 @@ function ImageAndText({
   backgroundColor = "#fff",
   backgroundImage,
   title,
+  titleLineHeight,
   description,
   buttons = [],
   experienceButtons = [],
@@ -119,6 +124,7 @@ function ImageAndText({
   hasContainerClass = false,
   maxWidth = "max-w-full",
   removePadding = false,
+  additionalInfos,
 }: Banner) {
   return (
     <div
@@ -149,7 +155,10 @@ function ImageAndText({
       >
         {titleAppearsFirst && (
           <div class="flex flex-col gap-2.5 w-full">
-            <div dangerouslySetInnerHTML={{ __html: title || "" }} />
+            <div
+              style={{ lineHeight: titleLineHeight }}
+              dangerouslySetInnerHTML={{ __html: title || "" }}
+            />
 
             {description && (
               <div dangerouslySetInnerHTML={{ __html: description }} />
@@ -173,11 +182,33 @@ function ImageAndText({
         >
           {!titleAppearsFirst && (
             <div class="flex flex-col gap-2.5 w-full">
-              <div dangerouslySetInnerHTML={{ __html: title || "" }} />
+              <div
+                style={{ lineHeight: titleLineHeight }}
+                dangerouslySetInnerHTML={{ __html: title || "" }}
+              />
+
               {description && (
                 <div dangerouslySetInnerHTML={{ __html: description }} />
               )}
             </div>
+          )}
+
+          {additionalInfos && additionalInfos.length > 0 && (
+            <ul class="flex lg:hidden items-center justify-center w-full gap-6 mt-1 mb-6">
+              {additionalInfos.map((item) => (
+                <li class="flex items-center gap-2">
+                  <Icon id={item.icon} size={18} />
+                  <div
+                    style={{
+                      lineHeight: item.title.leading,
+                    }}
+                    dangerouslySetInnerHTML={{
+                      __html: item.title.label,
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
           )}
 
           {buttons && buttons.length > 0 && (

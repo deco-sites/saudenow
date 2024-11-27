@@ -48,7 +48,9 @@ export type AvailableIcons =
   | "AlertWarning"
   | "AlertError"
   | "share"
-  | "Calendar";
+  | "Calendar"
+  | "ExperiencePlay"
+  | "ExperienceCalendar";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
