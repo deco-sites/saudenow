@@ -24,6 +24,7 @@ export interface Props {
     link: string;
     target?: "_blank" | "_self";
     label: string;
+    isDisabled?: boolean;
   };
 }
 
@@ -87,7 +88,7 @@ export default function EventSchedule({
           })}
 
           {/* CTA Button */}
-          {cta && (
+          {cta && !cta.isDisabled && (
             <a
               href={cta.link}
               target={cta.target || "_self"}
